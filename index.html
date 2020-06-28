@@ -1,0 +1,59 @@
+<h1>スロットゲーム</h1>
+<button onclick="start()">start</button>
+<br>
+<span id="slot0">0</span>
+<span id="slot1">0</span>
+<span id="slot2">0</span>
+<br>
+<button onclick="stop0()">stop</button>
+<button onclick="stop1()">stop</button>
+<button onclick="stop2()">stop</button>
+<br>
+<button onclick="judge()">判定</button>
+
+<script>
+  var slotNum = [1, 2, 3];
+
+  function start() {
+      // スロットを動かす処理
+      slot0run();
+      slot1run();
+      slot2run();
+  }
+  function slot0run(){
+    document.getElementById("slot0").innerHTML = slotNum[Math.round(Math.random()*2)];
+    slot0btn = setTimeout(slot0run, 100); // 1000ms = 1秒
+  }
+  function slot1run(){
+    document.getElementById("slot1").innerHTML = slotNum[Math.round(Math.random()*2)];
+    slot1btn = setTimeout(slot1run, 100); // 1000ms = 1秒
+  }
+  function slot2run(){
+    document.getElementById("slot2").innerHTML = slotNum[Math.round(Math.random()*2)];
+    slot2btn = setTimeout(slot2run, 100); // 1000ms = 1秒
+  }
+
+  function stop0(){
+    // スロットを止める処理
+    clearTimeout(slot0btn);
+  }
+  function stop1(){
+    // スロットを止める処理
+    clearTimeout(slot1btn);
+  }
+  function stop2(){
+    // スロットを止める処理
+    clearTimeout(slot2btn);
+  }
+
+  function judge(){
+    slot0num = document.getElementById("slot0").textContent;
+    slot1num = document.getElementById("slot1").textContent;
+    slot2num = document.getElementById("slot2").textContent;
+    if(slot0num == slot1num && slot1num == slot2num) {
+        alert("成功！！！");
+    } else {
+        alert("失敗！！！");
+    }
+  }
+</script>

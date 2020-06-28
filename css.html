@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<title>スロットゲーム</title>
+<style>
+span#slot0 {font-size: 30px; font-weight:bold; color:red;}
+span#slot1 {font-size: 30px; font-weight:bold; color:orange;}
+span#slot2 {font-size: 30px; font-weight:bold; color:blue;}
+
+body {
+  text-align: center;
+  font-family: fantasy, 'ヒラギノ丸ゴ Pro W4';
+}
+table {
+  width: 200px;
+  margin: 0 auto;
+  padding: 0;
+}
+button {
+  border: 2px solid #000;
+  border-radius: 0;
+  background: #fff;
+  height: 5em;
+  width: 5em;
+}
+.start {
+  background-color: #248;
+  color: #fff;
+  height: 3em;
+}
+.start {
+  background-color: #248;
+  color: #fff;
+}
+.stop0 {
+  color: red;
+}
+.stop1 {
+  color: orange;
+}
+.stop2 {
+  color: blue;
+}
+.judge {
+  background-color: yellow;
+  height: 3em;
+}
+
+</style>
+</head>
+<body>
+    
+<h1>スロットゲーム</h1>
+<button onclick="start()" class="start">start</button>
+<br>
+<div>
+    <table>
+    　<tr>
+    　　<th><span id="slot0">0</span></th>
+    　　<th><span id="slot1">0</span></th>
+    　　<th><span id="slot2">0</span></th>
+    　</tr>
+    　<tr>
+    　　<td><button onclick="stop0()" class="stop0">stop0</button></td>
+    　　<td><button onclick="stop1()" class="stop1">stop1</button></td>
+    　　<td><button onclick="stop2()" class="stop2">stop2</button></td>
+    　</tr>
+    </table>
+</div>
+
+<br>
+<br>
+<button onclick="judge()" class="judge">判定</button>
+<script>
+    var slotNum = [1, 2, 3];
+    var slot0num = 0;
+    var slot1num = 0;
+    var slot2num = 0;
+
+    function start(){
+        run0();
+        run1();
+        run2();
+    }
+    function run0() {
+        document.getElementById("slot0").innerHTML = slotNum[Math.round( Math.random()*2 )];
+        slot0btn = setTimeout(run0, 100);
+    }
+    function run1() {
+        document.getElementById("slot1").innerHTML = slotNum[Math.round( Math.random()*2 )];
+        slot1btn = setTimeout(run1, 100);
+    }
+    function run2() {
+        document.getElementById("slot2").innerHTML = slotNum[Math.round( Math.random()*2 )];
+        slot2btn = setTimeout(run2, 100);
+    }
+    function stop0(){
+        clearTimeout(slot0btn);
+        slot0num = document.getElementById('slot0').textContent;
+    }
+    function stop1(){
+        clearTimeout(slot1btn);
+        slot1num = document.getElementById('slot1').textContent;
+    }
+    function stop2(){
+        clearTimeout(slot2btn);
+        slot2num = document.getElementById('slot2').textContent;
+    }
+
+    function judge(){
+        if (slot0num == slot1num && slot1num == slot2num){
+            alert("クリア！！");
+        } else {
+            alert("失敗");
+        }
+    }
+</script>
+</body>
+</html>
